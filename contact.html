@@ -22,6 +22,7 @@
    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css"
       media="screen">
    <script src="https://kit.fontawesome.com/26f0a64c16.js" crossorigin="anonymous"></script>
+   <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
    </head>
    <!-- body -->
    <body class="main-layout">
@@ -106,23 +107,25 @@
                   <div class="container">
                     
                   <form action="https://api.web3forms.com/submit" method="POST" id="request" class="main_form">
-                     <input type="hidden" name="subject" value="New Submission from customer">
                      <input type="hidden" name="access_key" value="6a320d9d-1efa-45d9-9307-885f2424b1ba">
+                     <input type="hidden" name="subject" value="New Request from Client ❗⚠️">
+                     <input type="hidden" name="from_name" value="Client Notification ⚠️">
+                     <input type="hidden" name="replyto" value="custom@gmail.com" />
                      <div class="row">
                         <div class="col-md-12 ">
-                           <input class="contactus" placeholder="Full Name" type="type" name="Full Name"> 
+                           <input class="contactus" placeholder="Full Name" type="text" name="Name" required> 
                         </div>
                         <div class="col-md-12">
-                           <input class="contactus" placeholder="Email " type="type" name="Email "> 
+                           <input class="contactus" id="to" placeholder="Email" type="type" name="Email " required> 
                         </div>
                         <div class="col-md-12">
-                           <input class="contactus" placeholder="Phone Number" type="type" name="Phone Number">                          
+                           <input class="contactus" placeholder="Phone Number" type="type" name="Phone Number" required>                          
                         </div>
                         <div class="col-md-12">
-                           <textarea class="textarea" placeholder="Message" type="type" Message="Name">Message</textarea>
+                           <textarea class="textarea" placeholder="Message" type="type"  name="Massage from Client" required></textarea>
                         </div>
                         <div class="col-md-12">
-                           <button type="submit" class="send_btn">Send</button>
+                           <button type="submit" onclick="sendMail();" class="send_btn">Send</button>
                         </div>
                      </div>
                   </form>
@@ -194,6 +197,25 @@
       </footer>
       <!-- end footer -->
       <!-- Javascript files-->
+      <script type="text/javascript">
+
+         function sendMail(){
+            emailjs.init("ZyL32yxaIoRjdVqPJ");
+         
+
+          var params = {
+            to : document.querySelector("#to").value
+          };
+
+          var serviceID = "service_eozsh7d"; //email service id
+          var templateID = "template_znxkf1m"; 
+         
+          emailjs.send("service_eozsh7d","template_znxkf1m",{
+to: document.querySelector("#to").value,
+});
+}
+
+      </script>
       <script src="js/jquery.min.js"></script>
       <script src="js/bootstrap.bundle.min.js"></script>
       <script src="js/jquery-3.0.0.min.js"></script>
